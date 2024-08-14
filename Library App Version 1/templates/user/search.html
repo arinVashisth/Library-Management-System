@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Searching</title>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-blue-400 justify-between px-10 py5">
+        <ul class="justify-between">
+            <li><a href="/dashboard/{{ cred.id }}">Welcome To Online Library</a></li>
+        </ul>
+    </nav>
+    <nav class="bg-purple-800">
+        <!-- Navbar content -->
+        <ul class="px-3 py-2 flex space-x-4 text-blue-100 justify-end">
+            <li><a href="/dashboard/{{ cred.id }}">Dashboard</a></li>
+            <li><a href="/sections/{{ cred.id }}">View Sections</a></li>
+            <li><a href="/feedback/{{ cred.id }}">Feedback</a></li>
+            {% if i==1 %}
+            <li>
+                <form action="/search/{{ cred.id }}" method="post">
+                    <input type="text" name="search_query" placeholder="Search..." class="border rounded px-2 py-1">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">Search</button>
+                </form>
+            </li>
+            {% elif i==2 %}
+            <li>
+                <form action="/search/{{ cred.id }}" method="post">
+                    <input type="text" name="search_query2" placeholder="Search..." class="border rounded px-2 py-1">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">Search</button>
+                </form>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container mx-auto mt-5">
+        {% if flag %}
+        <p class="text-center text-red-500">You didn't search for anything yet!</p>
+        {% else %}
+        <div class="px-5">
+            <p class="text-lg font-semibold">Search results:</p>
+            <ul class="list-disc ml-5">
+                {% if i == 1 %}
+                {% for book in cred3 %}
+                <li>{{ book.name }} by {{ book.author }} in Section {{ book.section_id }}</li>
+                {% endfor %}
+                {% elif i == 2 %}
+                {% for book in cred3 %}
+                <li>{{ book.name }} have these books: - {{ book.books }}</li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

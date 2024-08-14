@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sections</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-blue-400 justify-between px-10 py-5">
+        <ul class="justify-between">
+            <li class="text-white">Library Sections</li>
+        </ul>
+    </nav>
+    <nav class="bg-purple-800">
+        <ul class="px-3 py-2 flex space-x-4 text-blue-100 justify-end">
+            <li class="cursor-pointer"><a href="/dashboard/{{ cred.id }}">Dashboard</a></li>
+            <li>
+                <form action="/search/{{ cred.id }}" method="post">
+                  <input type="text" name="search_query2" placeholder="Search..." class="px-2 py-1 rounded-md">
+                  <button type="submit" class="bg-blue-500 text-white px-4 py-1 rounded-md">Search</button>
+                </form>
+              </li>
+            <li><a href="/sections/{{ cred.id }}?sort_order=asc">Sort A-Z</a></li>
+            <li><a href="/sections/{{ cred.id }}?sort_order=desc">Sort Z-A</a></li>
+        </ul>
+    </nav>
+    <div class="container mx-auto mt-10">
+        <h1 class="text-2xl font-bold mb-5">Sections Available</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for section in list1 %}
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <!-- <img src="..." class="w-full h-48 object-cover object-center mb-4" alt="Section Image"> -->
+                <h2 class="text-lg font-semibold">{{ section.name }}</h2>
+                <p class="text-sm text-gray-600 mb-2">Available Books:</p>
+                <div class="flex flex-wrap mb-4">
+                    {% for book in section.books %}
+                    <span class="bg-gray-200 text-sm px-2 py-1 rounded-full mr-2 mb-2">{{ book.name }}</span>
+                    {% endfor %}
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Description:</p>
+                <p class="text-sm mb-4">{{ section.description }}</p>
+                <a href="/more/{{ cred.id }}/{{ section.id }}"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">More details</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <footer class="text-center py-4 bg-gray-300 mt-10">
+        @2024 Info
+    </footer>
+</body>
+
+</html>

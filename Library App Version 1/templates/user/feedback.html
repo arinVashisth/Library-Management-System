@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Feedback</title>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-blue-400 justify-between px-10 py-5">
+        <ul class="justify-between">
+            <li class="text-white">Give your Feedback About Our Books:-</li>
+        </ul>
+    </nav>
+    <nav class="bg-purple-800">
+        <ul class="px-3 py-2 flex space-x-4 text-blue-100 justify-end">
+            <li class="cursor-pointer"><a href="/dashboard/{{cred.id}}">Dashboard</a></li>
+            <li class="cursor-pointer"><a href="/sections/{{cred.id}}">Go for sections For Browsing</a></li>
+            <input type="text" class="px-2 py-1 rounded-md bg-white">
+            <button class="bg-blue-500 text-white px-4 py-1 rounded-md">Search</button>
+        </ul>
+    </nav>
+    <div class="container mx-auto px-10 py-10">
+        <h2 class="text-2xl mb-4">Hi {{cred.username}}</h2>
+        <div class="bg-purple-200 rounded-lg shadow-md p-4" style="width: 18rem;">
+            <img src="..." class="w-full h-48 object-cover object-center mb-4" alt="Book Image">
+            <form action="/feed" method="post">
+                <h3 class="text-xl font-semibold mb-2">Give Feedback here</h3>
+                <input type="text" name="comment" class="w-full px-2 py-1 mb-2 rounded-md bg-purple-600 text-white"
+                    placeholder="Enter your feedback">
+                <input name="uname" value="{{cred.username}}" type="hidden">
+                <label for="FeedBack" class="block text-sm font-medium text-gray-700 mb-1">Select Book:</label>
+                <select name="feed" class="w-full px-2 py-1 mb-2 rounded-md bg-white">
+                    {% for book in list1 %}
+                    <option value="{{ book.name }}">{{ book.name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="Rating" class="block text-sm font-medium text-gray-700 mb-1">Rating:</label>
+                <select name="rate" class="w-full px-2 py-1 mb-2 rounded-md bg-white">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
+            </form>
+        </div>
+    </div>
+    <footer class="text-center py-4 bg-gray-300 mt-10">
+        @2024 Info
+    </footer>
+</body>
+
+</html>

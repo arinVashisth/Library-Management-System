@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Link to Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add your custom styles here -->
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+<body class="bg-gray-200">
+<div class="container mx-auto flex justify-center items-center h-screen">
+    <div class="form-box bg-white shadow-lg p-10 rounded-md w-full sm:w-96">
+        <h1 class="text-3xl font-semibold text-center mb-8">LOG-IN</h1>
+        <form method="POST" action="/">
+            <div class="input-group mb-4">
+                <div class="input-field flex items-center bg-gray-100 rounded-md py-2 px-4 w-full">
+                    <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                    <input type="email" placeholder="Email" name="email" class="bg-transparent focus:outline-none w-full">
+                </div>
+            </div>
+            <div class="input-group mb-4">
+                <div class="input-field flex items-center bg-gray-100 rounded-md py-2 px-4 w-full">
+                    <i class="fas fa-lock text-gray-400 mr-2"></i>
+                    <input type="password" placeholder="Password" name="pass" class="bg-transparent focus:outline-none w-full">
+                </div>
+            </div>
+            <p class="text-sm text-gray-500 mb-4">Forgot password? <a href="/forgot" class="text-blue-500">Click Here!</a></p>
+            <p class="text-sm text-gray-500 mb-4">If you didn't sign up Go for sign up <a href="/signup" class="text-blue-500">Click Here!</a></p>
+            <div class="btn-field">
+                <input type="submit" name="submit" id="submit" value="Log-in" class="bg-blue-500 text-white rounded-md py-2 px-4 w-full hover:bg-blue-600 cursor-pointer transition duration-300 ease-in-out">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

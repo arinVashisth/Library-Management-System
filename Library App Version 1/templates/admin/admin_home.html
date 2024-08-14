@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIBRARIAN</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <!-- Include header -->
+    {% include '/admin/header.html' %}
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-10">
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Book Statistics -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-semibold mb-4">Book Statistics</h2>
+                <p>Total Books: <span class="font-bold">{{ book|length }}</span></p>
+                <p>Issued Books: <span class="font-bold">{{ ubook|length }}</span></p>
+                <!-- Add more book statistics as needed -->
+            </div>
+
+            <!-- User Statistics -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-semibold mb-4">User Statistics</h2>
+                <p>Total Users: <span class="font-bold">{{ user|length }}</span></p>
+                <p>New Sign-ups Today: <span class="font-bold">0</span></p>
+                <!-- Add more user statistics as needed -->
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="bg-white p-4 rounded-lg shadow col-span-2">
+                <h2 class="text-lg font-semibold mb-4">Recent Activities</h2>
+                <ul>
+                    <li>New User Registered: <span class="font-bold">{{ use.username }}</span></li>
+                    <li>New Book Added: <span class="font-bold">{{ use2.name }}</span></li>
+                    <!-- Add more recent activities as needed -->
+                </ul>
+            </div>
+
+            <!-- Book Statistics Chart -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-semibold mb-4">Book Statistics Chart</h2>
+                <img src="{{ url_for('admin_dashboard') }}" alt="Book Statistics Chart">
+            </div>
+
+            <!-- Books per Section Chart -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-semibold mb-4">Books per Section Chart</h2>
+                <img src="{{ url_for('admin_dash') }}" alt="Books per Section Chart">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

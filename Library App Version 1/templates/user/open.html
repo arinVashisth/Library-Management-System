@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Book Detail</title>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-blue-400 px-10 py-5">
+        <ul>
+            <li class="text-white">Book: {{ book.name }}</li>
+        </ul>
+    </nav>
+    <nav class="bg-purple-800">
+        <ul class="px-3 py-2 flex space-x-4 text-blue-100 justify-end">
+            <li class="cursor-pointer"><a href="/account/{{cred.id}}" class="hover:text-white">Go Back</a></li>
+        </ul>
+    </nav>
+    <div class="container mx-auto mt-10 px-4">
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <embed src="/{{ book.content }}" type="application/pdf" width="100%" height="600px">
+        </div>
+        <a href="/{{ book.content }}" download class="block mt-4">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download PDF</button>
+        </a>
+    </div>
+</body>
+
+</html>

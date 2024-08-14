@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100">
+  <nav class="bg-blue-400 justify-between px-10 py-5">
+    <ul class="justify-between">
+      <li>Books in this Section: {{ cred5.name }}</li>
+    </ul>
+  </nav>
+  <nav class="bg-purple-800">
+    <ul class="px-3 py-2 flex space-x-4 text-blue-100 justify-end">
+      <li class="cursor-pointer"><a href="/dashboard/{{ cred.id }}">Dashboard</a></li>
+      <li class="cursor-pointer"><a href="/sections/{{ cred.id }}">Go for more sections</a></li>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Search</button>
+    </ul>
+  </nav>
+  <br>
+
+  <div class="container mx-auto">
+    <p class="text-center">You can't view any book before issuing it, If You haven't !!</p>
+    <br>
+    <br>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for i in list2 %}
+      <div class="bg-white rounded-lg shadow-md">
+        <img src="/{{i.profile}}" class="card-img-top" alt="Book cover">
+        <div class="p-4">
+          <h5 class="text-lg font-bold">{{ i.name }}</h5>
+          <p class="text-sm text-gray-600">Author: {{ i.author }}</p>
+          {% if cred.token > 0 %}
+          {% if i.availability == 1 %}
+          <p class="text-sm text-green-500">Status: Available</p>
+          <a href="/issue/{{ cred.id }}/{{ i.id }}"
+            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Issue Book</a>
+          {% else %}
+          {% for ab in cred3 %}
+          {% if i.id == ab.book_id and ab.user_id==cred.id %}
+          <p class="text-sm text-yellow-500">Status: You have this book !! Want to return ?</p>
+          <a href="/return/{{ cred.id }}/{{ i.id }}"
+            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Return Book</a>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+          {% else %}
+          {% for ab in cred3 %}
+          {% if i.id == ab.book_id and ab.user_id==cred.id %}
+          <p class="text-sm text-yellow-500">Status: You have this book !! Want to return ?</p>
+          <a href="/return/{{ cred.id }}/{{ i.id }}"
+            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Return Book</a>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+          <a href="/feedback/{{cred.id}}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Feedback</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <br>
+    <br>
+    <p class="text-center">If it is not available then there may be two reasons: check your token, you can only access
+      up to 5 e-Books and another person has issued this book. So wait for a week you will be notified.</p>
+  </div>
+  <br>
+  <br>
+  <footer class="text-center py-4 bg-gray-300">
+    @2024 Info
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Account Settings</title>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-blue-400 py-4">
+        <ul class="text-white text-center">
+            <li>Your Account Settings</li>
+        </ul>
+    </nav>
+    <nav class="bg-purple-800 py-2">
+        <ul class="px-3 py-2 flex space-x-4 text-blue-100 justify-end">
+            <li class="cursor-pointer"><a href="/dashboard/{{ cred.id }}">Dashboard</a></li>
+            <li class="cursor-pointer"><a href="/sections/{{ cred.id }}">Browse Sections</a></li>
+        </ul>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-semibold">{{ cred.username }}</h2>
+                <p class="text-gray-600">{{ cred.email }}</p>
+                <p class="text-gray-600">{{ cred.password }}</p>
+                <p class="text-gray-600">You can borrow up to {{ cred.token }} E-Books</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-gray-200 p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold mb-4">Borrowed E-Books</h3>
+            <div class="flex flex-wrap">
+                {% for i in list2 %}
+                <button class="mr-4 mb-4"><a href="/open/{{ cred.id }}/{{ i }}"><span class="book px-4 py-2 bg-blue-500 text-white rounded">{{ i }}</span></a></button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
